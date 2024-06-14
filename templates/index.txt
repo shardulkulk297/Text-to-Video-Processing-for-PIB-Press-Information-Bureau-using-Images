@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Image Search</title>
+</head>
+<body>
+    <h1>Enter Summarized Text</h1>
+    <form id="searchForm">
+        <textarea id="summarized_text" rows="5" cols="50" placeholder="Enter summarized text"></textarea>
+        <br>
+        <button type="submit">Generate Images and Video</button>
+    </form>
+
+    <div id="videoContainer">
+        <!-- Video will be displayed here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').submit(function(event) {
+                event.preventDefault();
+                var summarizedText = $('#summarized_text').val();
+
+                // Make AJAX request to Flask server
+                $.ajax({
+                    type: 'POST',
+                    url: '/search',
+                    data: { summarized_text: summarizedText },
+                    success: function(response) {
+                        var videoPath = response.video_path;
+                        // Append a timestamp to the video URL to prevent caching
+                        var timestamp = new Date().getTime();
+                        var videoUrlWithTimestamp = videoPath + '?timestamp=' + timestamp;
+                        var videoHtml = '<video width="640" height="480" controls><source src="' + videoUrlWithTimestamp + '" type="video/mp4"></video>';
+                        $('#videoContainer').html(videoHtml);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

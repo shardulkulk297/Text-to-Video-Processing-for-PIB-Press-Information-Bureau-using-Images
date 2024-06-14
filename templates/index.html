@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Image Search</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+
+    <style>
+        @keyframes loader_5191 {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .loader {
+            display: none;
+            position: absolute;
+            top: 105%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .square {
+            background: #000000;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 155%;
+            left: 50%;
+            margin-top: -5px;
+            margin-left: -5px;
+        }
+
+        #sq1 {
+            margin-top: -25px;
+            margin-left: -25px;
+            animation: loader_5191 675ms ease-in-out 0s infinite alternate;
+        }
+
+        #sq2 {
+            margin-top: -25px;
+            animation: loader_5191 675ms ease-in-out 75ms infinite alternate;
+        }
+
+        #sq3 {
+            margin-top: -25px;
+            margin-left: 15px;
+            animation: loader_5191 675ms ease-in-out 150ms infinite;
+        }
+
+        #sq4 {
+            margin-left: -25px;
+            animation: loader_5191 675ms ease-in-out 225ms infinite;
+        }
+
+        #sq5 {
+            animation: loader_5191 675ms ease-in-out 300ms infinite;
+        }
+
+        #sq6 {
+            margin-left: 15px;
+            animation: loader_5191 675ms ease-in-out 375ms infinite;
+        }
+
+        #sq7 {
+            margin-top: 15px;
+            margin-left: -25px;
+            animation: loader_5191 675ms ease-in-out 450ms infinite;
+        }
+
+        #sq8 {
+            margin-top: 15px;
+            animation: loader_5191 675ms ease-in-out 525ms infinite;
+        }
+
+        #sq9 {
+            margin-top: 15px;
+            margin-left: 15px;
+            animation: loader_5191 675ms ease-in-out 600ms infinite;
+        }
+
+        /* Add styles for other squares here */
+
+        #newid {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            /* Set your gradient colors here */
+            -webkit-background-clip: text;
+            color: black;
+            display: inline;
+        }
+
+        #newid .colorss {
+            background: linear-gradient(to right, #ff8c00, #8a2be2);
+            /* Set your gradient colors here */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .link-unstyled {
+    text-decoration: none;
+    color: inherit;
+       
+    /* Add any other styles to reset here */
+}
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="navbar">
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="{{ url_for('static', filename='image.html') }}"><i class="fas fa-image"></i> Image Gallery</a>
+            <a href="{{ url_for('static', filename='about.html') }}"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="{{ url_for('static', filename='video.html') }}"><i class="fas fa-video"></i> Video Gallery</a>
+            <a href="{{ url_for('static', filename='log.html') }}" class="login-link"><i class="fas fa-user"></i>
+                Login</a>
+
+        </div>
+
+    </nav>
+    <div class="container">
+        <div>
+            <h1 id="newid"><b>Convert <div class="colorss">Text to Video</div> for Press Releases</b></h1>
+</body>
+<p class="rau">
+    "Transforming press releases into captivating visual content. Elevate
+    your message with dynamic videos that engage audiences effectively."
+</p>
+</div>
+
+
+<form id="searchForm">
+    <textarea id="summarized_text" rows="10" cols="50" placeholder="Enter summarized text"></textarea>
+    <br>
+    <div class="lable centerr">
+        <label for="language">Select Language</label>
+        <select id="language" name="language">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+        </select><br>
+    </div>
+    <div class="centerr">
+        <button class="cssbuttons-io-button" type="button" id="generateButton">
+            GENERATE
+            <div class="icon">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                        fill="currentColor"></path>
+                </svg>
+            </div>
+        </button>
+    </div>
+    <div class="loader" id="loader">
+        <div id="sq1" class="square"></div>
+        <div id="sq2" class="square"></div>
+        <div id="sq3" class="square"></div>
+        <div id="sq4" class="square"></div>
+        <div id="sq5" class="square"></div>
+        <div id="sq6" class="square"></div>
+        <div id="sq7" class="square"></div>
+        <div id="sq8" class="square"></div>
+        <div id="sq9" class="square"></div>
+        <!-- Add other squares here -->
+    </div>
+    <!-- End of Loader -->
+</form>
+<div id="videoContainer">
+    <!-- Video will be displayed here -->
+</div>
+<div id="approvalButtons" style="display: none;">
+    <button id="approveButton" class="approve-button">
+        <a href="{{ url_for('static', filename='upload.html') }}" class="link-unstyled">Approve</a>
+    </button>
+    
+
+    <button id="disapproveButton" class="disapprove-button">Disapprove</button>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchForm').submit(function (event) {
+            event.preventDefault();
+        });
+
+        $('#generateButton').click(function () {
+            var summarizedText = $('#summarized_text').val();
+            var language = $('#language').val();
+
+            // Show loader
+            $('#loader').show();
+
+            // Make AJAX request to Flask server
+            $.ajax({
+                type: 'POST',
+                url: '/search',
+                data: {
+                    summarized_text: summarizedText,
+                    language: language
+                },
+                success: function (response) {
+                    var videoPath = response.video_path;
+                    if (videoPath) {
+                        // Append a timestamp to the video URL to prevent caching
+                        var timestamp = new Date().getTime();
+                        var videoUrlWithTimestamp = videoPath + '?timestamp=' + timestamp;
+                        var videoHtml = '<video width="640" height="480" controls><source src="' + videoUrlWithTimestamp +
+                            '" type="video/mp4"></video>';
+                        $('#videoContainer').html(videoHtml);
+                        $('#approvalButtons').show(); // Show the approval buttons
+                    } else {
+                        $('#videoContainer').html('<p>No video found</p>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#videoContainer').html('<p>Error occurred while generating video</p>');
+                },
+                complete: function () {
+                    // Hide loader
+                    $('#loader').hide();
+                }
+            });
+        });
+
+        // Handle form submission for approval and disapproval
+        
+
+        $('#disapproveButton').click(function (event) {
+            event.preventDefault();
+            window.location.href = 'http://127.0.0.1:8080/';
+        });
+    });
+
+</script>
+</body>
+
+</html>

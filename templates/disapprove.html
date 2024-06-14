@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Your Video</title>
+    <!-- Include any necessary CSS stylesheets or frameworks -->
+</head>
+<body>
+    <h1>Edit Your Video</h1>
+
+    <!-- Display images along with options to keep or remove them -->
+    <div id="image-list">
+        <!-- Loop through each image and display it along with the buttons -->
+        {% for image in images %}
+            <div class="image-item">
+                <img src="{{ url_for('static', filename=image.filename) }}" alt="{{ image.keyword }}">
+                <div class="options">
+                    <button class="keep-btn" data-filename="{{ image.filename }}" data-keyword="{{ image.keyword }}">Keep</button>
+                    <button class="remove-btn" data-filename="{{ image.filename }}" data-keyword="{{ image.keyword }}">Remove</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.keep-btn').click(function() {
+                // Get the filename and keyword of the image
+                var filename = $(this).data('filename');
+                var keyword = $(this).data('keyword');
+
+                // Handle the logic for keeping the image
+                // You may want to implement AJAX here to update the backend
+                alert('Image kept: ' + filename + ' with keyword: ' + keyword);
+            });
+
+            $('.remove-btn').click(function() {
+                // Get the filename and keyword of the image
+                var filename = $(this).data('filename');
+                var keyword = $(this).data('keyword');
+
+                // Handle the logic for removing the image
+                // You may want to implement AJAX here to update the backend
+                alert('Image removed: ' + filename + ' with keyword: ' + keyword);
+            });
+        });
+    </script>
+</body>
+</html>

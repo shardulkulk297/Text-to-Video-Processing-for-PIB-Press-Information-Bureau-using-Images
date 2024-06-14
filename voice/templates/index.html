@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Converter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Text-to-Speech Converter</h1>
+        <form id="textToSpeechForm">
+            <label for="textInput">Enter Text:</label><br>
+            <textarea id="textInput" name="text" rows="4" cols="50"></textarea><br>
+            <button type="submit">Generate Audio</button>
+        </form>
+        <audio controls id="audioPlayer" style="display: none;">
+            Your browser does not support the audio element.
+        </audio>
+    
+
+    </div>
+   
+    <script>
+        document.getElementById('textToSpeechForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var formData = new FormData(this);
+
+            fetch('/generate_audio', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'audio/mpeg',
+                    'Content-Type': 'application/json',
+                    'xi-api-key': '<your-xi-api-key>'
+                },
+                body: JSON.stringify({
+                    text: formData.get('text')
+                })
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                var audioUrl = URL.createObjectURL(blob);
+                document.getElementById('audioPlayer').src = audioUrl;
+                document.getElementById('audioPlayer').style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

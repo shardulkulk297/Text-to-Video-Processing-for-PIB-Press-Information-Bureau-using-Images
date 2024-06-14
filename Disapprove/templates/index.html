@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Generation App</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    rel="stylesheet"
+  />
+
+    <style>
+        
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body background gradient */
+        body {
+            background: white;
+            font-family: 'Poppins', sans-serif; /* Use Poppins font for the entire page */
+        }
+
+        /* Style for the header */
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-family: "Inter";
+            color: #333;
+        }
+
+        /* Style for the form */
+        #videoForm {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Style for the form labels */
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        /* Style for the form inputs */
+        textarea,
+        input[type="file"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Style for the submit button */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for the result container */
+        #result {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .navbar {
+    overflow: hidden;
+    position: fixed; /* Fixed position at the top */
+    width: 100%;
+    top: 0; /* Align to the top */
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    height: 40px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: white; /* Dark background color for the navbar */
+    color: white;
+    font-family: "Inter"; /* Text color for navbar links */
+    margin-top: 0px;
+}
+
+/* Style for navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 25px;
+    transition: color 0.3s ease;
+    font-size: 15px;
+    color: black;
+}
+.navbar .login-link {
+    margin-left: auto; /* Pushes the login link to the right */
+    padding-right: 20px; /* Add some right padding for spacing */
+}
+
+/* Change color of navbar links on hover */
+.navbar a:hover {
+    color: rgb(124, 185, 234);
+}
+        
+
+        /* Add more styles as needed */
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#home"><i class="fas fa-home"></i> Home</a>
+        <a href="{{ url_for('static', filename='image.html') }}"><i class="fas fa-image"></i> Image Gallery</a>
+        <a href="{{ url_for('static', filename='about.html') }}"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="{{ url_for('static', filename='video.html') }}"><i class="fas fa-video"></i> Video Gallery</a>
+        <a href="{{ url_for('static', filename='log.html') }}" class="login-link"><i class="fas fa-user"></i>
+            Login</a>
+
+    </div>
+    <h1>CREATE YOUR OWN VIDEO</h1>
+    <form id="videoForm" action="/generate_video" method="post" enctype="multipart/form-data">
+        <label for="text">Enter Text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+
+        <label for="file">Upload Images:</label><br>
+        <input type="file" id="file" name="file[]" accept="image/*" multiple><br><br>
+
+        <input type="submit" value="Generate Video">
+    </form>
+
+    <div id="result">
+        <!-- Video will be displayed here -->
+    </div>
+
+    <script>
+        document.getElementById('videoForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var form = event.target;
+            var formData = new FormData(form);
+
+            fetch('/generate_video', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '<video width="640" height="360" controls><source src="/static/output_video.mp4" type="video/mp4"></video>';
+                    resultDiv.innerHTML += '<p>Speech Duration: ' + data.speech_duration + ' seconds</p>';
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+
+</html>

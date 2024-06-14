@@ -1,0 +1,247 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.approve-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.approve-button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Styles for the disapprove button */
+.disapprove-button {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.disapprove-button:hover {
+    background-color: #d32f2f; /* Darker red */
+}
+
+
+
+/* Body background gradient */
+body {
+    background: white;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font for the entire page */
+}
+
+/* Style for the navbar */
+/* Style for the navbar */
+.navbar {
+    overflow: hidden;
+    position: fixed; /* Fixed position at the top */
+    width: 100%;
+    top: 0; /* Align to the top */
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    height: 40px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: white; /* Dark background color for the navbar */
+    color: white;
+    font-family: "Inter"; /* Text color for navbar links */
+    margin-top: 0px;
+}
+
+/* Style for navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 25px;
+    transition: color 0.3s ease;
+    font-size: 15px;
+    color: black;
+}
+.navbar .login-link {
+    margin-left: auto; /* Pushes the login link to the right */
+    padding-right: 20px; /* Add some right padding for spacing */
+}
+
+/* Change color of navbar links on hover */
+.navbar a:hover {
+    color: rgb(124, 185, 234);
+}
+
+/* Style for the header */
+header {
+    background-color: #24243e; /* Dark background color for the header */
+    color: white; /* Text color for the header */
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 5px;
+    margin-bottom: 70px; /* Ensure content below header is not hidden behind the navbar */
+}
+
+/* Style for the heading */
+h1 {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-family: "Inter"; 
+    font-size: 500%;
+}
+
+label{
+    padding: 10px;
+    font-family: "Inter";
+}
+/* Style for the container */
+.container {
+    text-align: center;
+    padding-top: 120px; /* Adjust this value to provide space below the fixed navbar */
+    position: relative; /* Ensure relative positioning for absolute elements inside */
+}
+
+/* Style for the form */
+form {
+    margin-top: 20px; /* Add some space between the header and the form */
+}
+
+/* Style for the textarea */
+textarea {
+
+    height: 100px; /* Increased height */
+    margin: 20px auto; /* Center the textarea and add some margin */
+    padding: 15px; /* Add padding for text inside the textarea */
+    border: 2px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    resize: none; /* Disable resizing */
+    display: block; /* Ensure it's displayed as a block element */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    background-color: rgba(255, 255, 255, 0.3); /* Set a semi-transparent white background */
+    font-family: "Inter";
+    width: 850px;
+}
+nav{
+    background-color: black;
+}
+/* Style for the button */
+.cssbuttons-io-button {
+    background: #a370f0;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #714da6;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    cursor: pointer;
+    
+  }
+  
+  .cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+    right: 0.3em;
+    transition: all 0.3s;
+  }
+  
+  .cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+  }
+  
+  .cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #7b52b9;
+  }
+  
+  .cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+  }
+  
+  .cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+  }
+  
+
+select {
+    padding: 10px; /* Adjusted padding for better spacing */
+    border-radius: 5px; /* Add rounded corners */
+    border: 1px solid #ccc; /* Add border */
+    background-color: #a370f0; /* Set a semi-transparent white background */
+    font-size: 16px; /* Adjust the font size */
+    color: #333; /* Text color */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+    border-radius: 12px;
+    font-family: "Inter";
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Change border color of select dropdown on hover */
+select:hover {
+    border-color: #888; /* Darker border color on hover */
+}
+
+/* Change border color of select dropdown when focused */
+select:focus {
+    outline: none; /* Remove outline */
+    border-color: #555; /* Darker border color when focused */
+}
+
+.centerr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 15px;
+}
+
+.rau {
+    font-family: "Inter";
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.centerr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

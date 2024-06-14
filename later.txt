@@ -1,0 +1,113 @@
+from flask import Flask, render_template, request, jsonify, send_from_directory
+import requests
+import os
+from moviepy.editor import ImageSequenceClip, AudioFileClip
+from PIL import Image
+from googletrans import Translator
+import numpy as np
+
+app = Flask(__name__)
+
+# Define your Unsplash API access key
+UNSPLASH_ACCESS_KEY = 'w8z8J5TU-1NfjieaG0lIAlpGZ09JLKogSkt3fU3_TH8'
+
+# Directory to save downloaded images
+IMAGE_DIR = 'images'
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/search', methods=['POST'])
+def search():
+    if request.method == 'POST':
+        summarized_text = request.form['summarized_text']
+        selected_language = request.form['language']
+
+        # Translate the input text to the selected language
+        translator = Translator()
+        translated_text = translator.translate(summarized_text, dest=selected_language).text
+
+        # Call Unsplash API to search for images related to the original text
+        url = f'https://api.unsplash.com/search/photos/?query={summarized_text}&client_id={UNSPLASH_ACCESS_KEY}'
+        response = requests.get(url)
+        data = response.json()
+
+        # Extract image URLs from the response
+        image_urls = []
+        if 'results' in data:
+            for result in data['results']:
+                image_urls.append(result['urls']['regular'])
+
+        # Create images directory if it doesn't exist
+        if not os.path.exists(IMAGE_DIR):
+            os.makedirs(IMAGE_DIR)
+
+        # Download images and save them to the images directory
+        downloaded_images = []
+        for i, url in enumerate(image_urls[:5]):  # Download up to 5 images
+            image_path = os.path.join(IMAGE_DIR, f'image_{i}.jpg')
+            response = requests.get(url)
+            with open(image_path, 'wb') as f:
+                f.write(response.content)
+            downloaded_images.append(image_path)
+
+        # Resize images to the same dimensions
+        resized_images = []
+        for img_path in downloaded_images:
+            img = Image.open(img_path)
+            img = img.resize((1280, 720))  # Resize images to 1280x720
+            resized_img_path = os.path.join(IMAGE_DIR, f'resized_{os.path.basename(img_path)}')
+            img.save(resized_img_path)
+            resized_images.append(resized_img_path)
+
+        # Convert images to numpy arrays
+        image_arrays = [np.array(Image.open(img)) for img in resized_images]
+
+        # Create a video from resized images using MoviePy
+        if resized_images:
+            # Generate speech file from translated text
+            speech_url = "https://api.elevenlabs.io/v1/text-to-speech/d4MXCgbY2HLyaf0IhQqD"
+            headers = {
+                "Accept": "audio/mpeg",
+                "Content-Type": "application/json",
+                "xi-api-key": "5f068f786b432121fa2a429b23228d52"
+            }
+            speech_data = {
+                "text": translated_text,
+                "output_format": "mp3_44100_128",  # Use MP3 format with 44.1kHz sample rate at 128kbps
+                "optimize_streaming_latency": 0     # Adjust as needed
+            }
+            response = requests.post(speech_url, json=speech_data, headers=headers)
+            with open('speech.mp3', 'wb') as f:
+                f.write(response.content)
+
+            # Get the duration of the generated speech
+            speech_duration = AudioFileClip('speech.mp3').duration
+
+            # Calculate the duration of each frame in the video
+            frame_duration = speech_duration / len(image_arrays)
+
+            # Create the video from resized images using MoviePy
+            clips = [ImageSequenceClip([image], durations=[frame_duration]) for image in image_arrays]
+
+            # Set the audio of the video to the speech
+            video = clips[0]
+            for i in range(1, len(clips)):
+                video = video.crossfadein(0.5).crossfadeout(0.5)
+                video = video.set_audio(clips[i].audio)
+                video = video.set_duration(video.duration + clips[i].duration)
+
+            video_path = os.path.join(IMAGE_DIR, 'output_video.mp4')
+            video.write_videofile(video_path, codec="libx264", fps=1)
+        else:
+            return jsonify({'error': 'No images found'})
+
+        return jsonify({'video_path': video_path, 'translated_text': translated_text})
+
+@app.route('/images/<path:filename>')
+def download_file(filename):
+    return send_from_directory(IMAGE_DIR, filename, as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Results</title>
+</head>
+<body>
+    <h1>Image Results</h1>
+    {% if image_urls %}
+        {% for image_url in image_urls %}
+            <img src="{{ image_url }}" alt="Image">
+            <br>
+        {% endfor %}
+    {% else %}
+        <p>No images found for the provided text.</p>
+    {% endif %}
+    <br>
+    <a href="/">Back to search</a>
+</body>
+</html>

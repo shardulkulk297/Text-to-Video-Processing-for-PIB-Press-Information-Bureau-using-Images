@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    color: white; /* Set text color to white */
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 35px;
+    position: relative;
+    margin: 40px 0;
+}
+
+h1::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: aliceblue;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        width: 100px;
+    }
+    50% {
+        width: 200px;
+    }
+    100% {
+        width: 300px;
+    }
+}
+
+.top-content {
+    background-color: lightgray;
+    margin: 0 auto 20px auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px lightgray;
+}
+
+h3 {
+    height: 100%;
+    background-color: lightgray;
+    line-height: 60px;
+    padding: 0 50px;
+    color: white;
+}
+
+label {
+    display: inline-block;
+    height: 100%;
+    padding: 0 5px;
+    margin: 0 20px;
+    line-height: 60px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    transition: .5s;
+}
+
+label:hover {
+    color: wheat;
+}
+
+body {
+    background-color: black;
+}
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 10%;
+}
+
+.pic {
+    width: calc(33.33% - 20px);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.pic img {
+    width: 80%; /* Increase width */
+    height: auto; /* Let the height adjust proportionally */
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Show all images initially */
+.container .photo-gallery .pic {
+    display: block;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    color: white; /* Set text color to white */
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 35px;
+    position: relative;
+    margin: 40px 0;
+}
+
+h1::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: aliceblue;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        width: 100px;
+    }
+    50% {
+        width: 200px;
+    }
+    100% {
+        width: 300px;
+    }
+}
+
+.top-content {
+    background-color: lightgray;
+    margin: 0 auto 20px auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px lightgray;
+}
+
+h3 {
+    height: 100%;
+    background-color: lightgray;
+    line-height: 60px;
+    padding: 0 50px;
+    color: white;
+}
+
+label {
+    display: inline-block;
+    height: 100%;
+    padding: 0 5px;
+    margin: 0 20px;
+    line-height: 60px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    transition: .5s;
+}
+
+label:hover {
+    color: wheat;
+}
+
+body {
+    background-color: black;
+}
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 10%;
+}
+
+.pic {
+    width: calc(33.33% - 20px);
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.pic img {
+    width: 80%; /* Increase width */
+    height: auto; /* Let the height adjust proportionally */
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Show all images initially */
+.container .photo-gallery .pic {
+    display: block;
+}
+.generated-images {
+    background-color: transparent; /* Make the background transparent */
+    margin: 50px auto; /* Adjust margin for positioning */
+    padding: 40px; /* Increase padding for spacing */
+    border: 2px dashed white; /* Create a dashed border */
+    border-radius: 10px; /* Add border radius */
+    max-width: 600px; /* Set max-width */
+    text-align: center; /* Center align content */
+}
+
+.generated-images h2 {
+    color: white; /* Set text color */
+    margin-bottom: 20px; /* Add spacing */
+}
+
+#generate-btn {
+    background-color: transparent; /* Make background transparent */
+    color: white; /* Set text color */
+    padding: 10px 20px; /* Adjust padding */
+    border: 2px solid white; /* Create a solid border */
+    border-radius: 5px; /* Add border radius */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s, color 0.3s; /* Add transition */
+}
+
+#generate-btn:hover {
+    background-color: white; /* Change background color on hover */
+    color: black; /* Change text color on hover */
+}

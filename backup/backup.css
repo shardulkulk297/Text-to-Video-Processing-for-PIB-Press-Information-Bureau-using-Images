@@ -1,0 +1,188 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body background gradient */
+body {
+    background: radial-gradient(circle, rgba(234, 135, 178,1) 0%, rgba(109, 127, 149,1) 100%);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Style for the navbar */
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    height: 70px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+/* Style for navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 25px;
+    transition: color 0.3s ease;
+    font-size: 18px;
+}
+
+.navbar .login-link {
+    margin-left: auto;
+    padding-right: 20px;
+}
+
+/* Change color of navbar links on hover */
+.navbar a:hover {
+    color: rgb(124, 185, 234);
+}
+
+/* Style for the header */
+header {
+    background-color: #24243e;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 5px;
+    margin-bottom: 70px;
+}
+
+/* Style for the heading */
+h1 {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Style for the container */
+.container {
+    text-align: center;
+    padding-top: 120px;
+    position: relative;
+}
+
+/* Style for the form */
+form {
+    margin-top: 20px;
+}
+
+/* Style for the textarea */
+textarea {
+    width: 60%;
+    height: 150px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    display: block;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Style for the button */
+.cssbuttons-io-button {
+    background: #a370f0;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #714da6;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+    right: 0.3em;
+    transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+/* Change border color of select dropdown on hover */
+select:hover {
+    border-color: #888;
+}
+
+/* Change border color of select dropdown when focused */
+select:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.centerr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 15px;
+}
+
+/* Loader styles */
+.loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label{
+    padding: 10px;
+}
+

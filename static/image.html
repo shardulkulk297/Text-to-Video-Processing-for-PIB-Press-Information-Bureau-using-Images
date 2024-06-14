@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIB Photos</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <input type="radio" name="Photos" id="check1" checked>
+    <input type="radio" name="Photos" id="check2">
+    <input type="radio" name="Photos" id="check3">
+    <input type="radio" name="Photos" id="check4">
+    <input type="radio" name="Photos" id="check5">
+    <div class="container">
+        <h1><b>Press Information Bureau (PIB)</b></h1>
+        <div class="top-content">
+            <h3>Photo Gallery</h3>
+            <label for="check1">PIB</label>
+            <label for="check2">Defence</label>
+            <label for="check3">Railways</label>
+            <label for="check4">Civil</label>
+            <label for="check5">Coal</label>
+        </div>
+        <div class="generated-images">
+            <h2>GENERATE YOUR OWN IMAGES</h2>
+            <button id="generate-btn">DOWNLOAD</button>
+        </div>
+
+        <div class="photo-gallery">
+            <!-- Images for PIB category -->
+            <div class="pic pib">
+                <img src="photos/govt1.jpeg">
+            </div>
+            <div class="pic pib">
+                <img src="photos/pib2.jpeg">
+            </div>
+
+            <!-- Images for Defence category -->
+            <div class="pic defence">
+                <img src="photos/def1.jpeg">
+            </div>
+            <div class="pic defence">
+                <img src="photos/def2.jpeg">
+            </div>
+            <div class="pic defence">
+                <img src="photos/def3.jpeg">
+            </div>
+            <div class="pic defence">
+                <img src="photos/def4.jpeg">
+            </div>
+
+            <!-- Images for Railways category -->
+            <div class="pic railways">
+                <img src="photos/rail1.jpeg">
+            </div>
+            <div class="pic railways">
+                <img src="photos/rail2.jpeg">
+            </div>
+            <div class="pic railways">
+                <img src="photos/rail3.jpeg">
+            </div>
+            <div class="pic railways">
+                <img src="photos/rail4.jpg">
+            </div>
+
+            <!-- Images for Civil category -->
+            <div class="pic civil">
+                <img src="photos/civil1.png">
+            </div>
+            <div class="pic civil">
+                <img src="photos/civil2.jpeg">
+            </div>
+            <div class="pic civil">
+                <img src="photos/civil3.jpeg">
+            </div>
+            <div class="pic civil">
+                <img src="photos/civil4.jpeg">
+            </div>
+
+            <!-- Images for Coal category -->
+            <div class="pic coal">
+                <img src="photos/ccoal1.jpeg">
+            </div>
+            <div class="pic coal">
+                <img src="photos/coal2.jpeg">
+            </div>
+            <div class="pic coal">
+                <img src="photos/coal3.jpeg">
+            </div>
+            <div class="pic coal">
+                <img src="photos/coal4.png">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
