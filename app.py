@@ -4,7 +4,7 @@ import os
 import requests
 from flask import Flask, render_template, request, jsonify, send_from_directory, redirect, url_for
 from PIL import Image
-from googletrans import Translator
+
 
 app = Flask(__name__, static_url_path='/static')
 
